@@ -16,7 +16,7 @@ const PostContainer = props => {
           <PostHeader username={item.username} thumbnail={item.thumbnailUrl} />
           <CardImg top width="100%" src={item.imageUrl} />
           <PostInteraction likes={item.likes} />
-          <CommentSection comments={item.comments} timestamp={item.timestamp} />
+          <CommentSection index={i} comments={item.comments} timestamp={item.timestamp} commentSubmit={props.commentSubmit} />
         </Card>
       )
     })

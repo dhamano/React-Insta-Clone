@@ -7,7 +7,7 @@ import './postcontainer.scss';
 const PostContainer = props => {
   return (
     <div>
-      <PostCard cardData={props.data} />
+      <PostCard cardData={props.data} commentSubmit={props.commentSubmit} />
     </div>
   );
 }
