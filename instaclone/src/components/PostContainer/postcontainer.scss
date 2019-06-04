@@ -41,6 +41,14 @@
       transform: scaleX(-1);
     }
 
+    .fa-heart {
+      cursor: pointer;
+    }
+
+    .liked {
+      color: #f99;
+    }
+
     p {
       margin: 0;
       font-weight: bold;

@@ -6,8 +6,6 @@ import PostHeader from './PostHeader';
 import PostInteraction from './PostInteraction';
 import CommentSection from '../CommentSection/CommentSection';
 
-import './postcontainer.scss';
-
 const PostContainer = props => {
   return (
     props.cardData.map( (item,i) => {
@@ -15,7 +13,7 @@ const PostContainer = props => {
         <Card key={i}>
           <PostHeader username={item.username} thumbnail={item.thumbnailUrl} />
           <CardImg top width="100%" src={item.imageUrl} />
-          <PostInteraction likes={item.likes} />
+          <PostInteraction index={i} likes={item.likes} addLike={props.addLike} likedThis={(item.likedThis !== true) ? false : true} />
           <CommentSection index={i} comments={item.comments} timestamp={item.timestamp} commentSubmit={props.commentSubmit} />
         </Card>
       )
