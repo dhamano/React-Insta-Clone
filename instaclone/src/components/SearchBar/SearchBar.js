@@ -1,6 +1,7 @@
 import React from 'react';
 import instagramLogo from '../../img/instagram-logo.png';
 import instagramWordmark from '../../img/instagram-wordmark.png';
+import PropTypes from 'prop-types';
 
 import './search.scss';
 
@@ -33,5 +34,9 @@ class SearchBar extends React.Component {
     )
   }
 }
+
+SearchBar.propTypes = {
+  filterOnChange: PropTypes.func
+};
 
 export default SearchBar;
