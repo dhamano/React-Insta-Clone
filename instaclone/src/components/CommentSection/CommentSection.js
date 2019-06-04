@@ -26,13 +26,17 @@ class CommentSection extends React.Component {
     })
   }
 
+  deleteClickHandler = (event) => {
+    this.props.removeComment(event, event.target.dataset.pindex, event.target.dataset.index);
+  }
+
   render() {
     return (
       <div className="comment-section">
         {this.props.comments.map( (item, i) => {
           return(
             <div className="comment" key={i}>
-              <strong>{item.username}</strong> {item.text}
+              <strong>{item.username}</strong> {item.text} <span className="delete" onClick={this.deleteClickHandler} data-pindex={this.props.index} data-index={i}>delete</span>
             </div>
           )
         })}

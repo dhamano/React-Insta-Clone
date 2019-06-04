@@ -8,7 +8,7 @@ import './postcontainer.scss';
 const PostContainer = props => {
   return (
     <div>
-      <PostCard cardData={props.data} commentSubmit={props.commentSubmit} addLike={props.addLike} />
+      <PostCard cardData={props.data} commentSubmit={props.commentSubmit} addLike={props.addLike} removeComment={props.removeComment} />
     </div>
   );
 }
@@ -28,7 +28,8 @@ PostContainer.propTypes = {
     })
   ),
   commentSubmit: PropTypes.func,
-  addLike: PropTypes.func
+  addLike: PropTypes.func,
+  removeComment: PropTypes.func
 };
 
 export default PostContainer;

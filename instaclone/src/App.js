@@ -1,4 +1,5 @@
 import React from 'react';
+import Fuse from "fuse.js";
 import './App.scss';
 
 import SearchBar from './components/SearchBar/SearchBar';
@@ -60,12 +61,40 @@ class App extends React.Component {
     }
   }
 
+  removeComment = (event, pindex, index) => {
+    console.log("event ",event," pindex ",pindex," index ",index);
+    let deletedCommentArr = [...this.state.taskData];
+    deletedCommentArr[pindex].comments.splice(index,1);
+    this.setState({
+      taskData: deletedCommentArr
+    }, () => this.addToLocalStorage())
+  }
+
   filterOnChange = (event, filterQuery) => {
+    /*
     (filterQuery !== "") ? this.setState({ isFiltered: true }) : this.setState({ isFiltered: false });
     let filteredData = this.state.taskData.filter( item => {
       let username = item.username.toLowerCase();
       return username.indexOf( filterQuery.toLowerCase() ) !== -1;
     });
+    this.setState({ filteredData: filteredData });
+    //*/
+    (filterQuery !== "") ? this.setState({ isFiltered: true }) : this.setState({ isFiltered: false });
+    var options = {
+      shouldSort: true,
+      tokenize: true,
+      threshold: 0.6,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: [
+        "username",
+        "comments.username"
+      ]
+    };
+    let fuse = new Fuse(this.state.taskData, options); // "list" is the item array
+    let filteredData = fuse.search(filterQuery);
     this.setState({ filteredData: filteredData });
   }
 
@@ -95,7 +124,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <SearchBar filterOnChange={this.filterOnChange} />
-        <PostContainer data={listToUse} commentSubmit={this.addComment} addLike={this.addLike} />
+        <PostContainer data={listToUse} commentSubmit={this.addComment} addLike={this.addLike} removeComment={this.removeComment} />
       </div>
     );
   }
