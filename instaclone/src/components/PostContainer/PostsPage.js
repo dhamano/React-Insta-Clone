@@ -7,13 +7,11 @@ import PostContainer from './PostContainer';
 import dummyData from '../../dummy-data';
 
 class PostsPage extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      taskData: [],
-      filteredData:[],
-      isFiltered: false
-    }
+  state = {
+    taskData: [],
+    filteredData:[],
+    isFiltered: false,
+    username: this.props.username
   }
 
   componentDidMount() {
@@ -22,16 +20,10 @@ class PostsPage extends React.Component {
   }
 
   addComment = (event, comment) => {
-    let username ='';
-    if(event.target.dataset.username === '' || event.target.dataset.username === undefined) {
-      username = 'anonymous';
-    } else {
-      username = event.target.dataset.username;
-    }
     let index = event.target.dataset.index;
     let newComments = [...this.state.taskData]
     newComments[index].comments.push({
-      username: username,
+      username: this.state.username,
       text: comment
     });
     this.setState({

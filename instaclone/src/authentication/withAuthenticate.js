@@ -1,23 +1,36 @@
 import React from 'react';
-import { statement } from '@babel/template';
 
 const withAuthenticate = Prop01 => Prop02 =>
   class extends React.Component {
     state = {
-      loggedIn: localStorage.getItem("instacloneLogin")
+      userInfo: {
+        loggedIn: false,
+        username: 'anonymous'
+      }
+    }
+
+    componentDidMount() {
+      this.login();
     }
 
     login = () => {
-      this.setState({
-        loggedIn: localStorage.getItem("instacloneLogin")
-      })
+      if (localStorage.hasOwnProperty("instacloneLogin")) {
+        let value = localStorage.getItem("instacloneLogin");
+        try {
+          value = JSON.parse(value);
+          this.setState({ userInfo: value });
+        } catch (error) {
+          this.setState({ userInfo: value });
+        }
+      }
     }
 
     render() {
-      if(this.state.loggedIn) {
-        return <Prop02 />
+      console.log('loggedIn: ',this.state.userInfo.loggedIn);
+      if(this.state.userInfo.loggedIn) {
+        return <Prop02 username={this.state.userInfo.username} />
       } else {
-        return <Prop01 loggedIn={this.login} />
+        return <Prop01 login={this.login} />
       }
     }
   };
