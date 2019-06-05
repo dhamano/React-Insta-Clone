@@ -26,7 +26,6 @@ const withAuthenticate = Prop01 => Prop02 =>
     }
 
     render() {
-      console.log('loggedIn: ',this.state.userInfo.loggedIn);
       if(this.state.userInfo.loggedIn) {
         return <Prop02 username={this.state.userInfo.username} />
       } else {
