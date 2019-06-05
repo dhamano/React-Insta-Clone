@@ -1,0 +1,46 @@
+form {
+  background: #f0f9ff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #f0f9ff 0%, #cbebff 47%, #a1dbff 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #f0f9ff 0%,#cbebff 47%,#a1dbff 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #f0f9ff 0%,#cbebff 47%,#a1dbff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff',GradientType=0 ); /* IE6-9 */
+
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+
+  img, input {
+    margin-bottom: 20px;
+  }
+
+  img {
+    width: 105px;
+  }
+
+  input, button {
+    max-width: 250px;
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  input {
+    padding: 10px;
+    text-align: left;
+    border: solid 1px #ccc;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  button {
+    padding: 10px 20px;
+    background: #e8901e;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
