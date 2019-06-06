@@ -1,24 +1,4 @@
 .search-bar {
-  padding: 10px 30px;
-  border-bottom: solid 1px #ccc;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  img {
-    max-height: 30px;
-
-    &.logo {
-      $spacing-size: 20px;
-      margin-right: $spacing-size;
-      padding-right: $spacing-size;
-      border-right: solid 1px #000;
-    }
-
-    &.wordmark {
-      margin-bottom: -8px;
-    }
-  }
 
   #search {
     width: calc(40% - 40px);
