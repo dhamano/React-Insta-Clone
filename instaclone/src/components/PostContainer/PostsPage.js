@@ -97,7 +97,7 @@ class PostsPage extends React.Component {
     let listToUse = (this.state.isFiltered) ?  this.state.filteredData : this.state.taskData;
     return (
       <div className="App">
-        <SearchBar filterOnChange={this.filterOnChange} />
+        <SearchBar filterOnChange={this.filterOnChange} login={this.props.login} />
         <PostContainer data={listToUse} commentSubmit={this.addComment} addLike={this.addLike} removeComment={this.removeComment} />
       </div>
     );

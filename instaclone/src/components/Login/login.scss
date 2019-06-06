@@ -32,6 +32,19 @@ form.login {
     border: solid 1px #ccc;
     -webkit-appearance: none;
     appearance: none;
+
+    &:focus, &:active {
+      outline: none;
+      border: solid 1px #3ac;
+      box-shadow: 0 0 10px rgb(51,170,204);
+      box-shadow: 0 0 10px rgba(51,170,204,0.5);
+    }
+
+    &.error {
+      border-color: #f00;
+      box-shadow: 0 0 10px rgb(255,0,0);
+      box-shadow: 0 0 10px rgba(255,0,0,0.5);
+    }
   }
 
   button {
