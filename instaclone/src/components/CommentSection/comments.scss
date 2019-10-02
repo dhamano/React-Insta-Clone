@@ -1,0 +1,44 @@
+.comment-section {
+  text-align: left;
+
+  .comment {
+    padding: 0 10px;
+    text-align: left;
+  }
+
+  .timestamp {
+    margin: 8px 0 10px 10px;
+    color: #ccc;
+    font-weight: bold;
+    font-size: 0.75em;
+  }
+
+  form {
+    width: calc(100% - 20px);
+    margin: 6px auto 0;
+    padding: 8px 0;
+    border-top: solid 1px #ccc;
+    position: relative;
+
+    .overflow-menu {
+      line-height: 0;
+      font-weight: bold;
+      font-size: 1.25rem;
+      cursor: pointer;
+      position: absolute;
+      top: 22px;
+      right: 10px;
+    }
+  }
+
+  input {
+    padding: 10px;
+    width: 100%;
+    height: calc(1.25em + 20px);
+    font-size: 1rem;
+    line-height: 1.25em;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}

@@ -1,0 +1,51 @@
+.card {
+  max-width: 512px;
+  margin: 20px auto;
+
+  .post-header {
+    padding: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+
+    img {
+      max-height: 30px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    h3 {
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+      font-size: 1rem;
+      line-height: 1em;
+    }
+  }
+
+  .interactive {
+    padding: 10px;
+    text-align: left;
+
+    .far {
+      margin-right: 10px;
+      font-size: 1.25rem;
+      line-height: 1em;
+    }
+
+    .fa-comment {
+      -webkit-transform: scaleX(-1);
+      -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      transform: scaleX(-1);
+    }
+
+    p {
+      margin: 0;
+      font-weight: bold;
+      font-size: 0.875rem;
+    }
+  }
+
+}
