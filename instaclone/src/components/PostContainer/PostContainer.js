@@ -1,15 +1,34 @@
 import React from 'react';
 
 import PostCard from './PostCard';
+import PropTypes from 'prop-types';
 
 import './postcontainer.scss';
 
 const PostContainer = props => {
   return (
     <div>
-      <PostCard cardData={props.data} />
+      <PostCard cardData={props.data} commentSubmit={props.commentSubmit} addLike={props.addLike} />
     </div>
   );
 }
+
+PostContainer.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      username: PropTypes.string,
+      thumbnailUrl: PropTypes.string,
+      imageUrl: PropTypes.string,
+      comments: PropTypes.arrayOf(
+        PropTypes.shape({
+          username: PropTypes.string,
+          text: PropTypes.string
+        })
+      )
+    })
+  ),
+  commentSubmit: PropTypes.func,
+  addLike: PropTypes.func
+};
 
 export default PostContainer;
