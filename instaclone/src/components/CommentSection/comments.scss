@@ -4,6 +4,17 @@
   .comment {
     padding: 0 10px;
     text-align: left;
+    
+    .delete {
+      color: #aaa;
+      font-weight: bold;
+      font-size: 0.063rem;
+      cursor:pointer;
+
+      &:hover {
+        color: #a00;
+      }
+    }
   }
 
   .timestamp {

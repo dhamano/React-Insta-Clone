@@ -14,7 +14,7 @@ const PostContainer = props => {
           <PostHeader username={item.username} thumbnail={item.thumbnailUrl} />
           <CardImg top width="100%" src={item.imageUrl} />
           <PostInteraction index={i} likes={item.likes} addLike={props.addLike} likedThis={(item.likedThis !== true) ? false : true} />
-          <CommentSection index={i} comments={item.comments} timestamp={item.timestamp} commentSubmit={props.commentSubmit} />
+          <CommentSection index={i} comments={item.comments} timestamp={item.timestamp} commentSubmit={props.commentSubmit} removeComment={props.removeComment} />
         </Card>
       )
     })

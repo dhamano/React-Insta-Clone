@@ -1,4 +1,5 @@
 import React from 'react';
+import Fuse from "fuse.js";
 import './App.scss';
 
 import SearchBar from './components/SearchBar/SearchBar';
@@ -22,9 +23,7 @@ class App extends React.Component {
   }
 
   addComment = (event, comment) => {
-    console.log('event ',event,' comment ',comment);
     let username ='';
-    console.log('text ',event.target.get);
     if(event.target.dataset.username === '' || event.target.dataset.username === undefined) {
       username = 'anonymous';
     } else {
@@ -42,7 +41,6 @@ class App extends React.Component {
   }
 
   addLike = (event) => {
-    console.log('event ',event);
     let index = event.target.dataset.index;
     let newLikes = [...this.state.taskData]
     if(newLikes[index].likedThis !== true) {
@@ -60,12 +58,31 @@ class App extends React.Component {
     }
   }
 
+  removeComment = (event, pindex, index) => {
+    let deletedCommentArr = [...this.state.taskData];
+    deletedCommentArr[pindex].comments.splice(index,1);
+    this.setState({
+      taskData: deletedCommentArr
+    }, () => this.addToLocalStorage())
+  }
+
   filterOnChange = (event, filterQuery) => {
     (filterQuery !== "") ? this.setState({ isFiltered: true }) : this.setState({ isFiltered: false });
-    let filteredData = this.state.taskData.filter( item => {
-      let username = item.username.toLowerCase();
-      return username.indexOf( filterQuery.toLowerCase() ) !== -1;
-    });
+    var options = {
+      shouldSort: true,
+      tokenize: true,
+      threshold: 0.6,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: [
+        "username",
+        "comments.username"
+      ]
+    };
+    let fuse = new Fuse(this.state.taskData, options);
+    let filteredData = fuse.search(filterQuery);
     this.setState({ filteredData: filteredData });
   }
 
@@ -95,7 +112,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <SearchBar filterOnChange={this.filterOnChange} />
-        <PostContainer data={listToUse} commentSubmit={this.addComment} addLike={this.addLike} />
+        <PostContainer data={listToUse} commentSubmit={this.addComment} addLike={this.addLike} removeComment={this.removeComment} />
       </div>
     );
   }
