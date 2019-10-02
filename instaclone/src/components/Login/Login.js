@@ -8,7 +8,12 @@ class Login extends React.Component {
   state = {
     username: '',
     password: '',
-    loggedIn: false
+    userInfo: {
+      loggedIn: false,
+      username: 'anonymous'
+    },
+    errorUser: false,
+    errorPass: false
   }
 
   fieldInputHandler = event => {
@@ -19,27 +24,41 @@ class Login extends React.Component {
   
   login = event => {
     event.preventDefault();
-    if(localStorage.getItem("instacloneLogin")) {
-      localStorage.setItem("instacloneLogin", false);
+    if(this.state.username.length < 2) {
       this.setState({
-        loggedIn: false
-      })
+        errorUser: true
+      });
+      return false;
     } else {
-      localStorage.setItem("instacloneLogin", true);
       this.setState({
-        loggedIn: true
-      })
+        errorUser: false
+      });
     }
-    this.props.loggedIn();
+    event.preventDefault();
+    if(this.state.password.length < 8) {
+      this.setState({
+        errorPass: true
+      });
+      return false;
+    } else {
+      this.setState({
+        errorPass: false
+      });
+    }
+    let userInfoVal = {
+      loggedIn: !this.state.userInfo.loggedIn,
+      username: this.state.username,
+    };
+    localStorage.setItem("instacloneLogin", JSON.stringify(userInfoVal));
+    this.props.login();
   }
 
   render() {
-    console.log(this.props.loggedIn);
     return (
-      <form onSubmit={this.login}>
+      <form className="login" onSubmit={this.login}>
         <img src={instagramWordmark} className="wordmark" alt="Instagram Wordmark" />
-        <input value={this.state.username} onChange={this.fieldInputHandler} type="text" name="username" id="username" placeholder="username" />
-        <input value={this.state.password} onChange={this.fieldInputHandler} type="password" minLength="8" name="password" id="password" placeholder="password" />
+        <input className={`${this.state.errorUser ? 'error' : ''}`} value={this.state.username} onChange={this.fieldInputHandler} type="text" minLength="2" name="username" id="username" placeholder="username" />
+        <input className={`${this.state.errorPass ? 'error' : ''}`} value={this.state.password} onChange={this.fieldInputHandler} type="password" minLength="8" name="password" id="password" placeholder="password" />
         <button type="submit" name="submit">Login</button>
       </form>
     )

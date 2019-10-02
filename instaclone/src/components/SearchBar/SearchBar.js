@@ -17,6 +17,16 @@ class SearchBar extends React.Component {
     ;
   }
 
+  logout = event => {
+    event.preventDefault();
+    let userInfoVal = {
+      loggedIn: false,
+      username: '',
+    };
+    localStorage.setItem("instacloneLogin", JSON.stringify(userInfoVal));
+    this.props.login();
+  }
+
   render() {
     return (
       <div className="search-bar">
@@ -28,7 +38,7 @@ class SearchBar extends React.Component {
         <div className="icons">
           <i className="far fa-compass"></i>
           <i className="far fa-heart"></i>
-          <i className="far fa-user"></i>
+          <i className="far fa-user"><div onClick={this.logout}>Logout</div></i>
         </div>
       </div>
     )

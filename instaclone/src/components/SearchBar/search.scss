@@ -35,6 +35,31 @@
   .icons {
     i {
       margin-right: 20px;
+      position: relative;
+    }
+
+    .fa-user {
+      cursor: pointer;
+
+      div {
+        height: 0;
+        padding: 0;
+        background: #fff;
+        border: solid 1px transparent;
+        overflow: hidden;
+        position: absolute;
+        top: 75%;
+        left: 0;
+        z-index: -10;
+        transition: all 0.25s ease-in-out;
+      }
+
+      &:hover div {
+        height: auto;
+        padding: 10px;
+        z-index: 10;
+        border-color: #ccc;
+      }
     }
   }
 }
